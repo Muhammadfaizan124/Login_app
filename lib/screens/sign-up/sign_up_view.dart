@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:login_app/screens/sign-in/sign_in_view.dart';
+import 'package:login_app/screens/sign-up/sign_up_viewmodel.dart';
 
 // ignore: must_be_immutable
 class Sign_Up extends StatelessWidget {
-  Sign_Up({super.key});
+  //Sign_Up({super.key});
   TextEditingController newusernameController = TextEditingController();
   TextEditingController newpasswordController = TextEditingController();
   TextEditingController confirmpasswordController = TextEditingController();
 
-  @override
+  //@override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 206, 205, 205),
@@ -21,9 +23,9 @@ class Sign_Up extends StatelessWidget {
               header(),
               const SizedBox(height: 10),
               inputFeilds(newusernameController, newpasswordController,
-                  confirmpasswordController),
+                  confirmpasswordController, context),
               const SizedBox(height: 50),
-              signIn(),
+              signIn(context),
             ],
           ),
         ),
@@ -55,8 +57,9 @@ header() {
   );
 }
 
-inputFeilds(
-    newusernameController, newpasswordController, confirmpasswordController) {
+inputFeilds(newusernameController, newpasswordController,
+    confirmpasswordController, context) {
+  final AuthService authservice = AuthService();
   return Center(
     child: Padding(
       padding: const EdgeInsets.all(8.0),
@@ -96,7 +99,14 @@ inputFeilds(
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                authservice.signUp(
+                  newusernameController.Text,
+                  newpasswordController.Text,
+                  confirmpasswordController.Text,
+                  context,
+                );
+              },
               style: ElevatedButton.styleFrom(minimumSize: Size(500, 50)),
               child: const Text(
                 'Sign Up',
@@ -110,13 +120,18 @@ inputFeilds(
   );
 }
 
-signIn() {
+signIn(context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
       Text('Already have an account?'),
       TextButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => Sign_In()),
+          );
+        },
         child: Text('Sign in'),
       )
     ],

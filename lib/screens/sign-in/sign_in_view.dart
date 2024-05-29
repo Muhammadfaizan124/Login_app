@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:login_app/screens/home/home_view.dart';
 import 'package:login_app/screens/sign-up/sign_up_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
-class SignIn extends StatelessWidget {
-  SignIn({super.key});
-   TextEditingController usernameController = TextEditingController();
-   TextEditingController passwordController = TextEditingController();
+class Sign_In extends StatelessWidget {
+  Sign_In({super.key});
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class SignIn extends StatelessWidget {
               const SingleChildScrollView(),
               header(),
               const SizedBox(height: 10),
-              inputFeilds(usernameController, passwordController),
+              inputFeilds(usernameController, passwordController, context),
               const SizedBox(height: 20),
               forgotpassword(),
               const SizedBox(height: 70),
@@ -56,7 +58,7 @@ header() {
   );
 }
 
-inputFeilds(usernameController, passwordController) {
+inputFeilds(usernameController, passwordController, context) {
   return Center(
     child: Padding(
       padding: const EdgeInsets.all(8.0),
@@ -86,7 +88,16 @@ inputFeilds(usernameController, passwordController) {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () async {
+                final SharedPreferences sharedPreferences =
+                    await SharedPreferences.getInstance();
+                sharedPreferences.setString(
+                    'username', usernameController.text);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Home_view()),
+                );
+              },
               style: ElevatedButton.styleFrom(minimumSize: Size(500, 50)),
               child: const Text(
                 'Login',
@@ -121,7 +132,7 @@ signUp(BuildContext context) {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) =>  Sign_Up()),
+            MaterialPageRoute(builder: (context) => Sign_Up()),
           );
         },
         child: Text('Sign up'),
