@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:login_app/screens/sign-in/sign_in_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AuthService{
-  Future<void> signUp(
-      String username, String password, String confirmPassword, BuildContext context) async {
+class AuthService {
+  Future<void> signUp(String username, String password, String confirmPassword,
+      BuildContext context) async {
     if (password == confirmPassword) {
       // Save the sign-up information
       final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -16,8 +16,9 @@ class AuthService{
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Account Registered'),
-            content: Text('Your account has been registered successfully.'),
+            title: const Text('Account Registered'),
+            content:
+                const Text('Your account has been registered successfully.'),
             actions: [
               TextButton(
                 onPressed: () {
@@ -39,14 +40,14 @@ class AuthService{
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Error'),
-            content: Text('Passwords do not match.'),
+            title: const Text('Error'),
+            content: const Text('Passwords do not match.'),
             actions: [
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('OK'),
+                child: const Text('OK'),
               ),
             ],
           );

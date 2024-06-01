@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:login_app/screens/home/home_view.dart';
+import 'package:login_app/screens/sign-in/sign_in_viewmodel.dart';
+//import 'package:login_app/screens/home/home_view.dart';
 import 'package:login_app/screens/sign-up/sign_up_view.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
 class Sign_In extends StatelessWidget {
@@ -88,15 +89,9 @@ inputFeilds(usernameController, passwordController, context) {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: ElevatedButton(
-              onPressed: () async {
-                final SharedPreferences sharedPreferences =
-                    await SharedPreferences.getInstance();
-                sharedPreferences.setString(
-                    'username', usernameController.text);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Home_view()),
-                );
+              onPressed: (){
+                SignInlogic signInlogic = SignInlogic();
+                signInlogic.signIn(usernameController, passwordController, context);
               },
               style: ElevatedButton.styleFrom(minimumSize: const Size(500, 50)),
               child: const Text(

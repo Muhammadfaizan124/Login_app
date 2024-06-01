@@ -39,6 +39,7 @@ class Splash_screenState extends State<Splash_screen> {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
     var obtainedemail = sharedPreferences.getString('email');
+
     setState(() {
       finalemail = obtainedemail;
     });
