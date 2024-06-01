@@ -57,8 +57,11 @@ header() {
   );
 }
 
-inputFeilds(newusernameController, newpasswordController,
-    confirmpasswordController, context) {
+inputFeilds(
+    TextEditingController newusernameController,
+    TextEditingController newpasswordController,
+    TextEditingController confirmpasswordController,
+    context) {
   final AuthService authservice = AuthService();
   return Center(
     child: Padding(
@@ -101,9 +104,9 @@ inputFeilds(newusernameController, newpasswordController,
             child: ElevatedButton(
               onPressed: () {
                 authservice.signUp(
-                  newusernameController.Text,
-                  newpasswordController.Text,
-                  confirmpasswordController.Text,
+                  newusernameController.text,
+                  newpasswordController.text,
+                  confirmpasswordController.text,
                   context,
                 );
               },

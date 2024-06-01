@@ -79,7 +79,7 @@ inputFeilds(usernameController, passwordController, context) {
             controller: passwordController,
             decoration: InputDecoration(
                 hintText: 'Password',
-                prefixIcon: Icon(Icons.lock),
+                prefixIcon: const Icon(Icons.lock),
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(18),
@@ -95,10 +95,10 @@ inputFeilds(usernameController, passwordController, context) {
                     'username', usernameController.text);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Home_view()),
+                  MaterialPageRoute(builder: (context) => const Home_view()),
                 );
               },
-              style: ElevatedButton.styleFrom(minimumSize: Size(500, 50)),
+              style: ElevatedButton.styleFrom(minimumSize: const Size(500, 50)),
               child: const Text(
                 'Login',
                 style: TextStyle(fontSize: 18),
@@ -114,7 +114,7 @@ inputFeilds(usernameController, passwordController, context) {
 forgotpassword() {
   return TextButton(
     onPressed: () {},
-    child: Text(
+    child: const Text(
       'Forgot Password?',
       style: TextStyle(
         fontSize: 15,
@@ -127,7 +127,7 @@ signUp(BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: [
-      Text('Dont have an account?'),
+      const Text('Dont have an account?'),
       TextButton(
         onPressed: () {
           Navigator.push(
@@ -135,7 +135,7 @@ signUp(BuildContext context) {
             MaterialPageRoute(builder: (context) => Sign_Up()),
           );
         },
-        child: Text('Sign up'),
+        child: const Text('Sign up'),
       )
     ],
   );
