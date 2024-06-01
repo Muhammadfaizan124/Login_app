@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:login_app/screens/forgot%20password/forgot_pass_view.dart';
 import 'package:login_app/screens/sign-in/sign_in_viewmodel.dart';
 //import 'package:login_app/screens/home/home_view.dart';
 import 'package:login_app/screens/sign-up/sign_up_view.dart';
@@ -26,7 +27,7 @@ class Sign_In extends StatelessWidget {
               const SizedBox(height: 10),
               inputFeilds(usernameController, passwordController, context),
               const SizedBox(height: 20),
-              forgotpassword(),
+              forgotpassword(context),
               const SizedBox(height: 70),
               signUp(context),
             ],
@@ -89,9 +90,10 @@ inputFeilds(usernameController, passwordController, context) {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: ElevatedButton(
-              onPressed: (){
+              onPressed: () {
                 SignInlogic signInlogic = SignInlogic();
-                signInlogic.signIn(usernameController, passwordController, context);
+                signInlogic.signIn(
+                    usernameController, passwordController, context);
               },
               style: ElevatedButton.styleFrom(minimumSize: const Size(500, 50)),
               child: const Text(
@@ -106,9 +108,14 @@ inputFeilds(usernameController, passwordController, context) {
   );
 }
 
-forgotpassword() {
+forgotpassword(context) {
   return TextButton(
-    onPressed: () {},
+    onPressed: () {
+      Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Forgot_password()),
+          );
+    },
     child: const Text(
       'Forgot Password?',
       style: TextStyle(
