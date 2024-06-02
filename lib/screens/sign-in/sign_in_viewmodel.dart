@@ -8,7 +8,7 @@ class SignInlogic {
     String? stroredUsername = prefs.getString('username');
     String? stroredPassword = prefs.getString('password');
 
-    prefs.getString('password');
+    //prefs.getString('password');
     if (stroredUsername == usernameController.text &&
         stroredPassword == passwordController.text) {
       usernameController.clear();

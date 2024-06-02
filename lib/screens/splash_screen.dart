@@ -1,4 +1,3 @@
-//import 'dart:async';
 
 import 'dart:async';
 
@@ -8,7 +7,7 @@ import 'package:login_app/screens/home/home_view.dart';
 import 'package:login_app/screens/sign-in/sign_in_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-String? finalemail;
+String? finalusername;
 
 // ignore: must_be_immutable
 class Splash_screen extends StatefulWidget {
@@ -28,7 +27,7 @@ class Splash_screenState extends State<Splash_screen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => finalemail == null ? Sign_In() : Home_view(),
+            builder: (context) => finalusername == null ? Sign_In() : Home_view(),
           ),
         );
       });
@@ -38,10 +37,10 @@ class Splash_screenState extends State<Splash_screen> {
   Future getValidationData() async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
-    var obtainedemail = sharedPreferences.getString('email');
+    var obtainedusername = sharedPreferences.getString('username');
 
     setState(() {
-      finalemail = obtainedemail;
+      finalusername = obtainedusername;
     });
   }
 

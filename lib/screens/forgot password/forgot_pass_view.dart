@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:login_app/screens/forgot%20password/forgot_pass_viewmodel.dart';
 import 'package:login_app/screens/sign-in/sign_in_view.dart';
 
 // ignore: must_be_immutable
@@ -68,6 +69,7 @@ inputFeilds(
     TextEditingController newpasswordController,
     TextEditingController confirmpasswordController,
     context) {
+  Forgot_logic resetPassword = Forgot_logic();
   return Center(
     child: Padding(
       padding: const EdgeInsets.all(8.0),
@@ -107,7 +109,10 @@ inputFeilds(
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                resetPassword.forgotpassword(usernameController,
+                    newpasswordController, confirmpasswordController, context);
+              },
               style: ElevatedButton.styleFrom(minimumSize: Size(500, 50)),
               child: const Text(
                 'Done',
